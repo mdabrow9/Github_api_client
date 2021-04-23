@@ -8,11 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/users")
 public class UserController
 {
     UserService userService;
@@ -41,8 +43,9 @@ public class UserController
         try {
             pageInt =  Integer.parseInt(page);
         } catch (Exception ignored) {
-
         }
+        if(per_pageInt>100) per_pageInt=100;
+        if(pageInt<1) pageInt=1;
 
         return new ResponseEntity<>(userService.getUserReposPaginated(username,per_pageInt,pageInt), HttpStatus.OK);
 
