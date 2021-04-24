@@ -4,16 +4,12 @@ import com.mdabrow9.githubstarsapi.model.RepoDTO;
 import com.mdabrow9.githubstarsapi.model.UserStarsDTO;
 import com.mdabrow9.githubstarsapi.services.UserService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/users")
 public class UserController
 {
@@ -26,34 +22,46 @@ public class UserController
 
 
     @GetMapping({"/{username}/repos"})
-    public ResponseEntity<List<RepoDTO>> getUserRepos(@PathVariable String username,
+    public List<RepoDTO> getUserRepos(@PathVariable String username,
                                                       @RequestParam(required = false ) String per_page,
                                                       @RequestParam(required = false ) String page)
     {
         if(per_page==null && page==null)
         {
-            return new ResponseEntity<>(userService.getUserRepos(username), HttpStatus.OK);
+            return userService.getUserRepos(username);
         }
         int per_pageInt=30,pageInt=1;
         try {
-            per_pageInt =  Integer.parseInt(per_page);
-        } catch (NumberFormatException ignored) {
-
+            if(per_page !=null) per_pageInt =  Integer.parseInt(per_page);
+        } catch (NumberFormatException e)
+        {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Given parameter \"per_page\" is not integer");
         }
         try {
-            pageInt =  Integer.parseInt(page);
-        } catch (Exception ignored) {
+            if(page !=null) pageInt =  Integer.parseInt(page);
+        } catch (NumberFormatException e)
+        {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Given parameter \"page\" is not integer");
         }
-        if(per_pageInt>100) per_pageInt=100;
-        if(pageInt<1) pageInt=1;
+        if(per_pageInt>100)
+        {
+            per_pageInt=100;
+        }
+        else if(per_pageInt<1)
+        {
+            per_pageInt=1;
+        }
+        if(pageInt<1)
+        {
+            pageInt=1;
+        }
 
-        return new ResponseEntity<>(userService.getUserReposPaginated(username,per_pageInt,pageInt), HttpStatus.OK);
-
+        return userService.getUserReposPaginated(username,per_pageInt,pageInt);
     }
     @GetMapping({"/{username}/stars"})
-    public ResponseEntity<UserStarsDTO> getUserStars(@PathVariable String username)
+    public UserStarsDTO getUserStars(@PathVariable String username)
     {
-        return new ResponseEntity<UserStarsDTO>(userService.getUserStargazers(username), HttpStatus.OK);
+        return userService.getUserStargazers(username);
     }
 
 

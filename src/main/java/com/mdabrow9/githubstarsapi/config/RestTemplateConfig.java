@@ -1,5 +1,6 @@
 package com.mdabrow9.githubstarsapi.config;
 
+import com.mdabrow9.githubstarsapi.errorHandlerer.RestTemplateResponseErrorHandler;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,6 @@ public class RestTemplateConfig
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder){
 
-        return builder.build();
+        return builder.errorHandler(new RestTemplateResponseErrorHandler()).build();
     }
 }

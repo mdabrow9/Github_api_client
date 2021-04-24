@@ -4,34 +4,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+@Getter
+@Setter
+@NoArgsConstructor
 public class RepoDTO
 {
     private String name;
-    private int stargazerCount;
+    private Integer stargazerCount;
 
-    public RepoDTO()
-    {
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    public int getStargazerCount()
-    {
-        return stargazerCount;
-    }
-
-    public void setStargazerCount(int stargazerCount)
-    {
-        this.stargazerCount = stargazerCount;
-    }
 }
 

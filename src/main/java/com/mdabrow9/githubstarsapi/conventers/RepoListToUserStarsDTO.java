@@ -1,7 +1,6 @@
 package com.mdabrow9.githubstarsapi.conventers;
 
 import com.mdabrow9.githubapi.domain.Repo;
-import com.mdabrow9.githubstarsapi.model.RepoDTO;
 import com.mdabrow9.githubstarsapi.model.UserStarsDTO;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
@@ -23,12 +22,7 @@ public class RepoListToUserStarsDTO implements Converter<List<Repo>, UserStarsDT
 
         final UserStarsDTO userStarsDTO = new UserStarsDTO();
 
-        int count = 0;
-        for(Repo item : source)
-        {
-            count+=item.getStargazers_count();
-        }
-
+        final int count = source.stream().mapToInt(o -> o.getStargazers_count()).sum();
         userStarsDTO.setUserStargazerCount(count);
 
         return userStarsDTO;

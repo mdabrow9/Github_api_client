@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.ResponseErrorHandler;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 
@@ -30,11 +31,13 @@ public class RestTemplateResponseErrorHandler implements ResponseErrorHandler
             throws IOException {
 
         if (httpResponse.getStatusCode()
-                .series() == HttpStatus.Series.SERVER_ERROR) {
-
-        } else if (httpResponse.getStatusCode()
-                .series() == HttpStatus.Series.CLIENT_ERROR) {
-
+                .series() == HttpStatus.Series.SERVER_ERROR)
+        {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        else if (httpResponse.getStatusCode()
+                .series() == HttpStatus.Series.CLIENT_ERROR)
+        {
             if (httpResponse.getStatusCode() == HttpStatus.NOT_FOUND) {
                 throw new NotFoundException("NOT FOUND");
             }

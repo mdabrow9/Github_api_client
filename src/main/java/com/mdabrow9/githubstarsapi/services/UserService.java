@@ -1,6 +1,6 @@
 package com.mdabrow9.githubstarsapi.services;
 
-import com.mdabrow9.githubapi.domain.Repo;
+
 import com.mdabrow9.githubstarsapi.model.RepoDTO;
 import com.mdabrow9.githubstarsapi.model.UserStarsDTO;
 
