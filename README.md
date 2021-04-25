@@ -21,7 +21,7 @@ Dane powinny być zwracane za pomocą protokołu HTTP.
 ```
 git clone https://github.com/mdabrow9/Allegro_Summer_E-Xperiance_2021_task.git
 cd Allegro_Summer_E-Xperiance_2021_task
-mvn spring-boot:runt
+mvn spring-boot:run
 ```
 #### Testy
 ```
