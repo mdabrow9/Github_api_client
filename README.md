@@ -1,4 +1,4 @@
-# Allegro_Summer_E-Xperiance_2021_task
+# Github_api_client
 ### Zadanie nr 3. Software Engineer 
 ##### Cel zadania:
 Stwórz oprogramowanie pozwalające na:
@@ -19,8 +19,8 @@ Dane powinny być zwracane za pomocą protokołu HTTP.
 1.<b>Maven</b>: Wymagany jest zainstalowany <a href="https://maven.apache.org/index.html">maven</a>. W konsoli wpisujemy:
 
 ```
-git clone https://github.com/mdabrow9/Allegro_Summer_E-Xperiance_2021_task.git
-cd Allegro_Summer_E-Xperiance_2021_task
+https://github.com/mdabrow9/Github_api_client.git
+cd Github_api_client
 mvn spring-boot:run
 ```
 #### Testy
@@ -29,17 +29,17 @@ mvn test
 ```
 2. <b>IntelliJ IDEA</b>:
   - File -> New ->Project from version Control...
-  - podajemy url:  https://github.com/mdabrow9/Allegro_Summer_E-Xperiance_2021_task.git -> Clone
+  - podajemy url:  https://github.com/mdabrow9/Github_api_client.git -> Clone
   - Uruchamiamy przyciskiem "RUN" lub domyślnym skrótem SHIFT + F10
 
 #### Testy
 - CTRL + SHIFT + F10
-- Project -> Allegro_Summer_E-Xperiance_2021_task -> PPM -> Run 'All Tests'
+- Project -> Github_api_client-> PPM -> Run 'All Tests'
 
 3. <b>konsola</b>: Uruchamiamy poleceniami:
 ```
-git clone https://github.com/mdabrow9/Allegro_Summer_E-Xperiance_2021_task.git
-cd Allegro_Summer_E-Xperiance_2021_task
+https://github.com/mdabrow9/Github_api_client.git
+cd Github_api_client
 mvnw spring-boot:run
 ```
 #### Testy
