@@ -19,7 +19,7 @@ Dane powinny być zwracane za pomocą protokołu HTTP.
 1.<b>Maven</b>: Wymagany jest zainstalowany <a href="https://maven.apache.org/index.html">maven</a>. W konsoli wpisujemy:
 
 ```
-https://github.com/mdabrow9/Github_api_client.git
+git clone https://github.com/mdabrow9/Github_api_client.git
 cd Github_api_client
 mvn spring-boot:run
 ```
@@ -38,7 +38,7 @@ mvn test
 
 3. <b>konsola</b>: Uruchamiamy poleceniami:
 ```
-https://github.com/mdabrow9/Github_api_client.git
+git clone https://github.com/mdabrow9/Github_api_client.git
 cd Github_api_client
 mvnw spring-boot:run
 ```
